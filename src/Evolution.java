@@ -1,12 +1,15 @@
 import java.util.*;
+
 public class Evolution {
 	private ArrayList<Player> players;
 	private ArrayList<Updater> updaters;
 	private ArrayList<Wall> walls;
 	private ArrayList<Wall> checkpoints;
 	private Wall lapCounter;
-	public static final int playerCount = 10000;
+	public static final int playerCount = 2000;
 	public static final int playersPerUpdater = 100;
+	public static final double initialRange = 2;
+	public static final double mutationRange = 0.5;
 	public Evolution (ArrayList<Player> players, ArrayList<Updater> updaters, ArrayList<Wall> walls, ArrayList<Wall> checkpoints, Wall lapCounter) {
 		this.players = players;
 		this.updaters = updaters;
@@ -25,14 +28,14 @@ public class Evolution {
 	public void spawnNewPlayer () {
 		ArrayList<Double> doubles = new ArrayList<Double>();
 		for (int i = 0; i < Player.nodeCount; i++) {
-			doubles.add(Math.random() * 2 - 1);
+			doubles.add(Math.random() * initialRange - initialRange/2);
 		}
 		players.add(addToUpdaters(new Player(475, 300, 10, walls, checkpoints, lapCounter, doubles.toArray(new Double[]{}))));
 	}
 	public void spawnNewPlayer (Player p) {
 		Double[] doubles = p.strengths().clone();
 		for (int i = 0; i < Player.nodeCount; i++) {
-			doubles[i] += Math.random() * 2 - 1;
+			doubles[i] += Math.random() * mutationRange - mutationRange/2;
 		}
 		players.add(addToUpdaters(new Player(475, 300, 10, walls, checkpoints, lapCounter, doubles)));
 	}
@@ -53,7 +56,7 @@ public class Evolution {
 			updaters.remove(0);
 		}
 		updaters.add(new Updater(new ArrayList<Player>()));
-		spawnBest(p);
+		spawnBest(p); //keep in the best player to conserve changes
 		for (int i = 0; i < playerCount - 1; i++) {
 			spawnNewPlayer(p);
 		}

@@ -11,7 +11,7 @@ public class Main extends JPanel implements ActionListener {
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private Wall lapCounter = new Wall(300, 300, 300, 10, false);
 	private ArrayList<Wall> checkpoints = new ArrayList<Wall>();
-	private Timer t = new Timer(50/3, this);
+	private Timer t = new Timer(15, this);
 	private Evolution evo;
 	private ArrayList<Updater> updaters = new ArrayList<Updater>();
 	private Player lastBest;
@@ -47,7 +47,6 @@ public class Main extends JPanel implements ActionListener {
 	}
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.YELLOW);
 		/*
 		for (Wall c : checkpoints) {
 			if (c.horizontal()) {

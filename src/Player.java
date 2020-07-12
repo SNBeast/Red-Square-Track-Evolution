@@ -1,9 +1,9 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
 public class Player {
-	public static final int maxLife = 600;
+	public static final int maxLife = 1000;
 	public static final int nodeCount = 20;
-	public static final int wsr = 5; //"Wall Search Resolution"
+	public static final int wsr = 20; //"Wall Search Resolution"
 	private double x;
 	private double y;
 	private double radius;
