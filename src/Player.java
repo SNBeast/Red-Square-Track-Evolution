@@ -116,7 +116,7 @@ public class Player {
 			for (Wall c : checkpoints) {
 				if (c.collision(x, y, radius)) {
 					triggering = true;
-					horizontal = c.horizontal();
+					horizontal = c.horizontal;
 				}
 			}
 			if (triggering) {
